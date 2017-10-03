@@ -1,0 +1,25 @@
+void removeElement(List list, Person p){
+    printf("Geben Sie die Daten der zu löschenden Person ein: ");
+    scanf("%s %s %d", &p.name, &p.firstname, &p.age);
+    List *ltemp;
+    while (*list.pcontent != p) {
+        list = &(*list).next;
+    }
+    ltemp = list.next;
+    list.next = list.next.next;
+    free(ltemp);
+}
+
+void show(List *list) {
+    for( ; *list.next != list; list = list.next)
+    printf("%d\n", list.pcontent);
+}
+
+void clear(List list) {
+     for( ; *list.next != list; list = list.next) {
+        free(list);
+    }
+}
+
+void end(void);
+
