@@ -1,0 +1,3 @@
+This should work; hopefully also with	tabs!
+
+Text contains 43 characters and 7 words.

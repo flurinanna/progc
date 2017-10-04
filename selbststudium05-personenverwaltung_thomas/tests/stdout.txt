@@ -1,0 +1,22 @@
+I(nsert), R(emove), S(how), C(lear), E(nd):
+Name: Firstname: Age: Person added successfully: Dreier Max, 14
+I(nsert), R(emove), S(how), C(lear), E(nd):
+Name: Firstname: Age: Person added successfully: Zingg Barbara, 27
+I(nsert), R(emove), S(how), C(lear), E(nd):
+Name: Firstname: Age: Person added successfully: Meyer Peter, 41
+I(nsert), R(emove), S(how), C(lear), E(nd):
+Name: Firstname: Age: Person added successfully: Albrecht Albert, 64
+I(nsert), R(emove), S(how), C(lear), E(nd):
+Name: Firstname: Age: Person added successfully: Meier Hans, 77
+I(nsert), R(emove), S(how), C(lear), E(nd):
+Name: Firstname: Age: Person added successfully: Dreier Fritz, 48
+I(nsert), R(emove), S(how), C(lear), E(nd):
+Erfasste Personen: 
+--------------------------------------------------------
+Albrecht Albert, 64
+Dreier Fritz, 48
+Dreier Max, 14
+Meier Hans, 77
+Meyer Peter, 41
+Zingg Barbara, 27
+I(nsert), R(emove), S(how), C(lear), E(nd):
