@@ -84,9 +84,11 @@ static void test_umrechnung(void)
 	// arrange
 	// act
 	double d = calculate(60);
-	printf("%f", d);
+	double e = calculate(100);
 	// assert
 	CU_ASSERT_DOUBLE_EQUAL(d, 15.5555, EPSILON);
+	CU_ASSERT_DOUBLE_EQUAL(e, 37.7777, EPSILON);
+	
 }
 
 
