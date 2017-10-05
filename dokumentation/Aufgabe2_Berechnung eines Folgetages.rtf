@@ -1,0 +1,208 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\froman\fcharset0 Times-Roman;}
+{\colortbl;\red255\green255\blue255;\red255\green39\blue18;}
+\vieww14900\viewh15520\viewkind0
+\deftab720
+\pard\pardeftab720\pardirnatural
+
+\f0\fs24 \cf0 \
+\pard\pardeftab720\sb240\sa120\pardirnatural\qc
+
+\b\fs48 \cf0  Berechnung des Folgetages
+\b0 \
+\pard\pardeftab720\pardirnatural
+
+\fs24 \cf0 \
+\pard\pardeftab720\sb240\sa120\pardirnatural
+
+\b \cf0 Zusammenfassung der Problemstellung
+\b0 \
+\pard\pardeftab720\pardirnatural
+\cf0 Das Programm soll von einem eingegebenen g\'fcltigen Datum das Datum des Folgetages berechnen und ausgeben. \
+Die G\'fcltigkeit des eingegebenen Datums wird gepr\'fcft und der Folgetag wird f\'fcr alle Daten ab dem 1. Januar 1583 berechnet. Schaltjahre werden mit ber\'fccksichtigt.\
+\
+\pard\pardeftab720\sb240\sa120\pardirnatural
+
+\b \cf0 L\'f6sungsvarianten
+\b0 \
+\pard\pardeftab720\pardirnatural
+\cf0 \
+F\'fcr die Berechnung haben wir ein struct f\'fcr das Datum erstellt und ein enum f\'fcr jeden Monat. Wir haben uns f\'fcr zwei zus\'e4tzliche Funktionen nebst der main-Funktion entschieden, eine Funktion welche die G\'fcltigkeit pr\'fcft und eine Funktion, welche das den Folgetag berechnet. Wir haben uns f\'fcr zus\'e4tzliche Funktionen entschieden, um verschiedene Aufgaben innerhalb des Programms klar aufzuteilen und damit \'dcbersicht zu schaffen.\
+\pard\pardeftab720\sb240\sa120\pardirnatural
+
+\b \cf0 \uc0\u8232 Modul\'fcbersicht 
+\b0 \
+\pard\pardeftab720\pardirnatural
+\cf0 Da es sich um ein sehr kleines Programm handelt, befindet sich der ganze Code in main.c, aufgeteilt auf die 3 Funktionen main, teste_gueltigkeit und berechne_folgetag. \
+\
+Globale Variablen: \
+- enum JAN, FEB, MAR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC\
+- struct Date\
+int d, m, y\
+Date start_date\
+\
+Lokale Variablen: \
+int testwert (main)\
+Date next_date (main)\
+\
+\pard\pardeftab720\sb240\sa120\pardirnatural
+
+\b \cf0 Programmablauf
+\b0 \
+\pard\pardeftab720\pardirnatural
+\cf0 Main > ruft teste_gueltigkeit auf zur Pr\'fcfung der Korrektheit des eingegebenen Datums und gibt einen int testwert zur\'fcck > main ruft berechne_folgetag auf > gibt das Datum des Folgetages auf der Konsole aus\
+\pard\pardeftab720\sb240\sa120\pardirnatural
+
+\b \cf0 \uc0\u8232 \cf0 Tests\
+\pard\pardeftab720\pardirnatural
+
+\b0 test_berechnung_schaltjahr: pr\'fcft die Berechnung des Folgetages im spezialfall Schaltjahr\
+test_berechnung_monatwechsel: pr\'fcft die Berechnung des Folgetages f\'fcr einen normalen Monatswechsel\
+test_berechnung_jahreswechsel: pr\'fcft die Berechnung des Folgetages f\'fcr einen normalen Jahreswechsel\
+test_berechnung_erstes_datum: pr\'fcft die Berechnung des Folgetages f\'fcr das erste g\'fcltige Datum \
+test_teste_gueltigkeit_vor_erstem_datum: pr\'fcft, ob der G\'fcltigkeitstest ein Datum vor dem ersten g\'fcltigen Datum ablehnt\
+test_teste_gueltigkeit_von_datum_tag: pr\'fcft, ob der G\'fcltigkeitstest ein ung\'fcltiges Datum ablehnt\
+test_teste_gueltigkeit_von_datum_monat: pr\'fcft, ob der G\'fcltigkeitstest ein ung\'fcltiges Datum ablehnt\
+test_teste_gueltigkeit_von_datum_in_zukunft: pr\'fcft, ob der G\'fcltigkeitstest ein Datum in der Zukunft akzeptiert\
+\pard\pardeftab720\sl288\slmult1\sa140\pardirnatural
+Alle Tests liefen erfolgreich durch.\
+\pard\pardeftab720\pardirnatural
+\
+\pard\pardeftab720\sb240\sa120\pardirnatural
+
+\b Erkenntnisse
+\b0 \cf2 \
+\pard\pardeftab720\pardirnatural
+\cf0 Das Programm l\'e4uft fehlerfrei. \
+\
+\pard\pardeftab720\sb240\sa120\pardirnatural
+
+\b \cf0 Anhang A: Quelltext 
+\b0 \
+\pard\pardeftab720\pardirnatural
+\cf0 \
+/* ----------------------------------------------------------------------------\
+ * --  _____       ______  _____                                              -\
+ * -- |_   _|     |  ____|/ ____|                                             -\
+ * --   | |  _ __ | |__  | (___    Institute of Embedded Systems              -\
+ * --   | | | '_ \\|  __|  \\___ \\   Zuercher Hochschule Winterthur             -\
+ * --  _| |_| | | | |____ ____) |  (University of Applied Sciences)           -\
+ * -- |_____|_| |_|______|_____/   8401 Winterthur, Switzerland               -\
+ * ----------------------------------------------------------------------------\
+ */\
+/**\
+ * \
+ * @brief calculation date of next day\
+ */\
+#include <stdio.h>\
+#include <stdlib.h>\
+#include <string.h>\
+\
+enum \{Jan = 1, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec\};\
+\
+typedef struct \{\
+    int day;\
+    int month;\
+    int year;\
+\} Date;\
+\
+Date start_date;\
+Date berechne_folgetag(Date start_date);\
+\
+int d, m, y;\
+int teste_gueltigkeit(Date start_date);\
+\
+/**\
+ * @brief Read an input-date and prints out the date of the day\
+ * after the input-date.\
+ * @returns Returns EXIT_SUCCESS (=0) on success,\
+ *                  EXIT_FAILURE (=1) on failure.\
+ */\
+int main(void)\
+\{\
+    scanf("%d%d%d\\n", &d, &m, &y);\
+    start_date.day = d;\
+    start_date.month = m;\
+    start_date.year = y;\
+\
+//function call to test the input value \
+int testwert = teste_gueltigkeit(start_date);\
+\
+//if the given date is ok > function call to calculate the date of the next day and print out the result\
+    if (testwert == 0) \{   \
+    Date next_date = berechne_folgetag(start_date);     \
+    (void)printf("Der Folgetag ist %d %d %d\\n", next_date.day, next_date.month, next_date.year);\
+	    return EXIT_SUCCESS;\
+	\} else \{ \
+	    return EXIT_FAILURE;\
+	\}\
+    return EXIT_SUCCESS;\
+\}\
+\
+\
+/**\
+ * @brief calculates the date one day after the input-date\
+ * @param Date start_date\
+ */\
+Date berechne_folgetag(Date start_date) \
+\{\
+//case: change of year\
+    if (start_date.month == Dec && start_date.day == 31) \{\
+        start_date.year++;\
+        start_date.month = 1;\
+        start_date.day = 1;\
+//case: change of month\
+    \} else if ((start_date.month == Jan || \
+                start_date.month == Mar ||\
+                start_date.month == May ||\
+                start_date.month == Jul ||\
+                start_date.month == Aug ||\
+                start_date.month == Oct) && start_date.day == 31) \{\
+        start_date.month++;\
+        start_date.day = 1;\
+    \} else if ((start_date.month == Apr ||\
+                start_date.month == Jun ||\
+                start_date.month == Sep ||\
+                start_date.month == Nov) && start_date.day == 30) \{\
+        start_date.month++;\
+        start_date.day = 1;\
+//case: month february\
+    \} else if(start_date.month == Feb && start_date.day == 28) \{\
+           if ((start_date.year%4 == 0 && \
+                start_date.year%100 != 0)|| \
+                (start_date.year%400 == 0)) \{\
+                start_date.day++;\
+           \}else \{\
+                start_date.month++;\
+                start_date.day = 1;\
+           \}\
+    \} else \{\
+//case: change of day\
+        start_date.day++;\
+    \}\
+    return start_date;  \
+\}\
+\
+\
+/**\
+ * @brief test, if the given input is a correct date\
+ * @param Date start_date\
+ */\
+int teste_gueltigkeit(const Date start_date) \
+\{\
+//test, if it is in the range\
+    if (start_date.year >= 1583 && start_date.day >= 1 && \
+            start_date.day <= 31 && start_date.month >= 1 &&\
+            start_date.month <= 12) \{\
+        return EXIT_SUCCESS;\
+//test, if its out of the range\
+    \} else if (start_date.day < 1 || start_date.day > 31 ||\
+            start_date.month < 1 || start_date.month > 12 ||\
+            start_date.year < 1583) \{\
+        return EXIT_FAILURE;\
+//any other cases\
+    \} else \{\
+        return EXIT_FAILURE;\
+    \}\
+\}\
+}

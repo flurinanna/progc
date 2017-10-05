@@ -1,5 +1,5 @@
 # what to produce
-TARGET        := bin/kontrollstrukturen
+TARGET        := bin/berechne_folgetag
 
 # implementation files
 SOURCES       := src/main.c

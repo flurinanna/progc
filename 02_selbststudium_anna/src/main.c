@@ -25,14 +25,16 @@ typedef struct {
 
 
 Date start_date;
-Date berechne_folgetag(Date start_date);
-
 int d, m, y;
+
+Date berechne_folgetag(Date start_date);
 int teste_gueltigkeit(Date start_date);
 
 /**
- * @brief read an input-date and prints out the date of the day
+ * @brief Read an input-date and prints out the date of the day
  * after the input-date.
+ * @returns Returns EXIT_SUCCESS (=0) on success,
+ *                  EXIT_FAILURE (=1) if more than one argument is given.
  */
 int main(void)
 {
@@ -53,6 +55,7 @@ int testwert = teste_gueltigkeit(start_date);
 	} else { 
 	    return EXIT_FAILURE;
 	}
+    return EXIT_SUCCESS;
 }
 
 
