@@ -24,9 +24,6 @@ typedef struct {
 } Date;
 
 
-Date start_date;
-int d, m, y;
-
 Date berechne_folgetag(Date start_date);
 int teste_gueltigkeit(Date start_date);
 
@@ -38,7 +35,11 @@ int teste_gueltigkeit(Date start_date);
  */
 int main(void)
 {
-    scanf("%d%d%d\n", &d, &m, &y);
+    Date start_date;
+    int d, m, y;
+    
+    (void)printf("Geben Sie ein Datum ein: <Tag> <Monat> <Jahr> \n");
+    scanf("%d%d%d", &d, &m, &y);
     start_date.day = d;
     start_date.month = m;
     start_date.year = y;
