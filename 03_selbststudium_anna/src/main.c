@@ -41,19 +41,26 @@ int main(void)
 {
 //Punkte einlesen
 int i = 0;
-//Noten noten;
+int all_points_inserted;
+Noten not;
 
-    for(i = 0; i < 100; i++) {
-    printf("Geben Sie die Punktezahl des Studierenden ein: ");
-    scanf("%d\n", &ptzahlen[i]);  
-    anzstudenten++;
+    while(!all_points_inserted && i < 100) {
+        (void)printf("Geben Sie die Punktezahl des Studierenden ein: \n");
+        (void)scanf("%d", &ptzahlen[i]);  
+        if(ptzahlen[i] >= 0) {
+            anzstudenten++;
+            i++;
+        } else if (ptzahlen[i] == -1) {
+	        all_points_inserted = 1;
+	    } else {
+	        (void)printf("Points must be > 0!\n");
+        }
     }
     
 //minimale Punktzahl eingeben:
-    printf("Geben Sie die minimale Punktezahl für die Note 6 ein: ");
-    scanf("%d\n", &minptzahl);
+    (void)printf("Geben Sie die minimale Punktezahl für die Note 6 ein: \n");
+    (void)scanf("%d", &minptzahl);
 //Note berechnen 
-    Noten not;
     not = berechne_noten(minptzahl, ptzahlen, anzstudenten);
 //Statistik ausgeben
     get_statistik(not);
@@ -68,14 +75,14 @@ Noten berechne_noten(int minptzahl,int ptzahlen[100], int anzstudenten) {
     Noten n = {0,0,0,0,0,0};
 //note berechnen
     for (i = 0; i < anzstudenten; i++){
-        note = 1 + (5*ptzahlen[i])/minptzahl;
+        note = 1 + (5.0*ptzahlen[i])/minptzahl;
         //abrunden oder aufrunden
-        int testwert = (int)note - note;
-        if(testwert <= 0.5){
-            double ceil(double note);
+        if(note > 6.0) note = 6.0;
+        if((note - (int)note) > 0.5){
+            note = ceil(note);
         } else {
-            double floor(double note);
-        }
+            note = floor(note);
+        }   
        //anzahl vorkommen jeder note
        if (note == 6){
             n.sechs++;
@@ -128,12 +135,12 @@ Noten berechne_noten(int minptzahl,int ptzahlen[100], int anzstudenten) {
 void get_statistik(Noten n) {
     (void)printf("----------------------------------------------------\n Statistics (%d students, %d points needes for mark 6): \n\n", anzstudenten, minptzahl);
     
-      (void)printf("Mark 6: %d\n Mark 5: %d\n Mark 4: %d\n Mark 3: %d\n Mark 2: %d\n Mark 1: %d\n\n", n.sechs, n.fuenf, n.vier, n.drei, n.zwei, n.eins);
+      (void)printf(" Mark 6: %d\n Mark 5: %d\n Mark 4: %d\n Mark 3: %d\n Mark 2: %d\n Mark 1: %d\n\n", n.sechs, n.fuenf, n.vier, n.drei, n.zwei, n.eins);
       
-      double averagemark = (double)bestmark/worstmark;
+      double averagemark = (double)(1*n.eins + 2*n.zwei + 3*n.drei + 4*n.vier + 5*n.fuenf + 6*n.sechs)/(double)anzstudenten;
       int markgroesservier = anzstudenten - (n.drei + n.zwei + n.eins);
       double prozent = markgroesservier/anzstudenten*100;
-      (void)printf("Best mark: %d\n Worst mark: %d\n Average mark: %f\n Mark >= 4: %d students (%.2f %)\n------------------------------------------------------------", bestmark, worstmark, averagemark, markgroesservier, prozent);
+      (void)printf(" Best mark: %d\n Worst mark: %d\n Average mark: %f\n Mark >= 4: %d students %.2f %\n------------------------------------------------------------", bestmark, worstmark, averagemark, markgroesservier, prozent);
 }
 
 
