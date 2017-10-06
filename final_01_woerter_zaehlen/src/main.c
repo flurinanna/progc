@@ -21,16 +21,16 @@
 int main()
 {
 
-    int text[100];
-    int woerter = 0, zeichen = 0;
+    int text[100];  // int array to save the text entered (in ASCII-Code).
+    int woerter = 0, zeichen = 0; // counters for words and chars.
     
-    text[zeichen] = getchar();
-    if(text[zeichen] != 0) {
+    text[zeichen] = getchar();  // first char is read.
+    if(text[zeichen] != '\n') { // if no text is entered the program terminates.
         woerter++;
     } else {
         return EXIT_FAILURE;
     }
-    while(text[zeichen] != '\n') {
+    while(text[zeichen] != '\n') {  // text is read char by char.
         text[zeichen + 1] = getchar();
         if (text[zeichen + 1] == ' ' || text[zeichen + 1] == '\t')      {
             zeichen++;
@@ -45,7 +45,8 @@ int main()
        zeichen++;
     }
 
-    (void)printf("Text contains %d characters and %d words.\n", zeichen, woerter);
+    (void)printf("Text contains %d characters and %d words.\n",
+                 zeichen, woerter); // counters are printed.
 
 	return EXIT_SUCCESS;
 }
