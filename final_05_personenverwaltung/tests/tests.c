@@ -28,11 +28,13 @@
 
 /// @brief The name of the STDOUT text file.
 #define OUTFILE "stdout.txt"
+#define OUTFILE2 "stdout2.txt"
 /// @brief The name of the STDERR text file.
 #define ERRFILE "stderr.txt"
 
 /// @brief The stimulus for the right-angled triangles
 #define INFILE_PERSONEN "stim-personen.input"
+#define INFILE_PERSONEN_CLEARED "stim-personen-cleared.input"
 
 
 
@@ -42,8 +44,6 @@ void removePerson(void);
 void showList(void);
 void clearList(void);
 
-
-#define EPSILON 0.001
 
 // setup & cleanup
 static int setup(void)
@@ -67,6 +67,19 @@ static void test_main_ausgabe(void)
 {
 	// arrange
 	const char *out_txt[] = {
+	        "I(nsert), R(emove), S(how), C(lear), E(nd):\n",
+            "Name: Firstname: Age: Person added successfully: Dreier Max, 14\n",
+            "I(nsert), R(emove), S(how), C(lear), E(nd):\n",
+            "Name: Firstname: Age: Person added successfully: Zingg Barbara, 27\n",
+            "I(nsert), R(emove), S(how), C(lear), E(nd):\n",
+            "Name: Firstname: Age: Person added successfully: Meyer Peter, 41\n",
+            "I(nsert), R(emove), S(how), C(lear), E(nd):\n",
+            "Name: Firstname: Age: Person added successfully: Albrecht Albert, 64\n",
+            "I(nsert), R(emove), S(how), C(lear), E(nd):\n",
+            "Name: Firstname: Age: Person added successfully: Meier Hans, 77\n",
+            "I(nsert), R(emove), S(how), C(lear), E(nd):\n",
+            "Name: Firstname: Age: Person added successfully: Dreier Fritz, 48\n",
+            "I(nsert), R(emove), S(how), C(lear), E(nd):\n",
 	        "Erfasste Personen: \n",
 		    "--------------------------------------------------------\n",
             "Albrecht Albert, 64\n",
@@ -75,8 +88,7 @@ static void test_main_ausgabe(void)
             "Meier Hans, 77\n",
             "Meyer Peter, 41\n",
             "Zingg Barbara, 27\n",
-            "--------------------------------------------------------\n",
-            "I(nsert), R(emove), S(how), C(lear), E(nd):"
+            "I(nsert), R(emove), S(how), C(lear), E(nd):\n"
 
 	};
 	// act
@@ -86,30 +98,40 @@ static void test_main_ausgabe(void)
 	assert_lines(OUTFILE, out_txt, sizeof(out_txt)/sizeof(*out_txt));
 }
 
-static void test_insertPerson(void)
-{
-	
-	
-	CU_ASSERT_EQUAL(5, 1);
-	CU_ASSERT_EQUAL(5, 1);
-}
-
-static void test_removePerson(void)
-{
-    int points[12] = { 15, 14, 14, 12, 11, 11, 10, 10, 10, 9, 9, 7};
-    int len = 12;
-    int points_6 = 14;
-    
-    CU_ASSERT_EQUAL(1, 12);
-  
-}
  
 static void test_clearList(void)
 {
-    int points[12] = { 15, 14, 14, 12, 11, 11, 10, 10, 10, 9, 9, 7};
-    int len = 12;
-    int points_6 = 14;
-    CU_ASSERT_EQUAL(1, 12);
+    // arrange
+	const char *out_txt2[] = {
+	        "I(nsert), R(emove), S(how), C(lear), E(nd):\n",
+            "Name: Firstname: Age: Person added successfully: Dreier Max, 14\n",
+            "I(nsert), R(emove), S(how), C(lear), E(nd):\n",
+            "Name: Firstname: Age: Person added successfully: Zingg Barbara, 27\n",
+            "I(nsert), R(emove), S(how), C(lear), E(nd):\n",
+            "Name: Firstname: Age: Person added successfully: Meyer Peter, 41\n",
+            "I(nsert), R(emove), S(how), C(lear), E(nd):\n",
+            "Name: Firstname: Age: Person added successfully: Albrecht Albert, 64\n",
+            "I(nsert), R(emove), S(how), C(lear), E(nd):\n",
+            "Name: Firstname: Age: Person added successfully: Meier Hans, 77\n",
+            "I(nsert), R(emove), S(how), C(lear), E(nd):\n",
+            "Name: Firstname: Age: Person added successfully: Dreier Fritz, 48\n",
+            "I(nsert), R(emove), S(how), C(lear), E(nd):\n",
+            "List cleared successfully\n",
+            "I(nsert), R(emove), S(how), C(lear), E(nd):\n",
+            "Erfasste Personen: \n",
+            "--------------------------------------------------------\n",
+            "I(nsert), R(emove), S(how), C(lear), E(nd):\n"
+
+	        
+
+	};
+    // act
+	int exit_code = system(XSTR(TARGET) " 1>" OUTFILE2 " 2>" ERRFILE " <" INFILE_PERSONEN_CLEARED);
+	// assert
+	CU_ASSERT_EQUAL(exit_code, 0);
+
+
+    assert_lines(OUTFILE2, out_txt2, sizeof(out_txt2)/sizeof(*out_txt2));
   
 }    
 
@@ -140,8 +162,6 @@ int main(void)
 	// setup, run, teardown
 	TestMainBasic("Personenverwaltung", setup, teardown
 				  , test_main_ausgabe
-				  , test_insertPerson
-				  , test_removePerson
 				  , test_clearList
 				  , test_comparePerson
 			    
