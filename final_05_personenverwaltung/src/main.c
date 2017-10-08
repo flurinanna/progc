@@ -9,7 +9,8 @@
  */
 /**
  * @file
- * @brief Lab implementation
+ * @brief program to store person data in a list, providing the options to
+ *        insert and remove persons and to show and clear the list.
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -37,8 +38,6 @@ int main(void)
             break;
         }
     }
-    
-
 }
 
 
