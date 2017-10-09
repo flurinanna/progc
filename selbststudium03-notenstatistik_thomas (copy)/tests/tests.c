@@ -48,7 +48,7 @@ typedef struct {
 
 
 /// UUT - Unit-Under-Test
-Statistics getStatistics(int points[], int len, int points_6);
+Statistics getStatistics(int pointlist[], int len, int points_6);
 int getMark(int points, int points_6);
 void printStatistics(Statistics);
 
@@ -110,7 +110,6 @@ static void test_getMark(void)
 	int points_6 = 30;
 	int mark1 = 0;
 	int mark2 = 0;
-	// printf("%f", d);
 	// assert
 	mark1 = getMark(points1, points_6);
 	mark2 = getMark(points2, points_6);
@@ -140,7 +139,6 @@ int main(void)
 	TestMainBasic("Notenstatistik", setup, teardown
 				  , test_main_ausgabe
 				  , test_getMark
-				  , test_getStatistics
-			    
+				  , test_getStatistics			    
 				  );
 }
