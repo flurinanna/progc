@@ -37,9 +37,7 @@ void removePerson(void) {
     int success = 0;
      while (pointer->next != &le && success != 1) {
 
-        if (strcmp(to_remove.name, pointer->next->content.name) == 0 && 
-            strcmp(to_remove.firstname, pointer->next->content.firstname) == 0 &&
-            to_remove.age == pointer->next->content.age) {
+        if (comparePerson(to_remove, pointer->next->content) == 0) {
             ListElement *tmp = pointer->next;
             pointer->next = pointer->next->next;
             free(tmp);
