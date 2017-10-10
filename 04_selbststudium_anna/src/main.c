@@ -18,7 +18,7 @@
 
 
 
-char word[20]; //strlen = max 19, sizeof = 20
+char word[20];
 char *wordlist[100];
 char *wkopie;
 size_t listlaenge;
@@ -26,19 +26,18 @@ int anzworte = 0;
 int wortzaehler = 0;
 
 
-// ist das erste Wort kleiner 
-
 
 void sort(char **wordlist) {
-for(int z = 0; z < anzworte; z++) {
-    for(wortzaehler = 0; wortzaehler < anzworte - 1; wortzaehler++) {
-    if(strcmp(*(wordlist + wortzaehler), *(wordlist + (wortzaehler+1))) > 0){
-        //swap 
-        char *temp = wordlist[wortzaehler];  
-        wordlist[wortzaehler] = wordlist[wortzaehler + 1];
-        wordlist[wortzaehler + 1] = temp;
+    for(int z = 0; z < anzworte; z++) {
+        for(wortzaehler = 0; wortzaehler < anzworte - 1; wortzaehler++) {
+            if(strcmp(*(wordlist + wortzaehler), 
+                      *(wordlist + (wortzaehler+1))) > 0) {
+//swap 
+                char *temp = wordlist[wortzaehler];  
+                wordlist[wortzaehler] = wordlist[wortzaehler + 1];
+                wordlist[wortzaehler + 1] = temp;
+            }
         }
-    }
     }
 }
 
@@ -48,7 +47,8 @@ for(int z = 0; z < anzworte; z++) {
  */
 int main(void)
 {
-    while(anzworte < 100 && !(strlen(word) == 3 && word[0]=='Z' && word[1]=='Z' && word[2]=='Z')) {
+    while(anzworte < 100 && !(strlen(word) == 3 && word[0]=='Z' 
+                            && word[1]=='Z' && word[2]=='Z')) {
 //Wort einlesen 
         printf("Gib ein Wort ein: ");
         scanf("%s", word); 
@@ -63,8 +63,10 @@ int main(void)
     anzworte--;
 //alphabetisch ordnen
     sort(wordlist);
+//wortliste ausgeben
+    printf("Die wortliste ist:\n");
     for(int k = 0; k < anzworte; k++) {
-    printf("die wortliste ist: %s\n", wordlist[k]);
+        printf("%s\n", wordlist[k]);
     }
 return EXIT_SUCCESS;
 

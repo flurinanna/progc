@@ -15,6 +15,9 @@
 #include <stdlib.h>
 #include "CUnit/Basic.h"
 #include "test_utils.h"
+#include <string.h>
+
+
 
 #ifndef TARGET // must be given by the make file --> see test target
 #error missing TARGET define
@@ -24,6 +27,17 @@
 #define OUTFILE "stdout.txt"
 /// @brief The name of the STDERR text file.
 #define ERRFILE "stderr.txt"
+
+/// @brief The stimulus for the right-angled triangles
+#define INFILE_NOTEN "woerter.input"
+
+
+
+/// UUT - Unit-Under-Test
+void sort(char **wordlist);
+
+
+#define EPSILON 0.001
 
 // setup & cleanup
 static int setup(void)
@@ -42,44 +56,73 @@ static int teardown(void)
 
 
 // tests
-static void test_main_with_zero_args(void)
+
+static void test_main_ausgabe(void)
 {
 	// arrange
-	const char *out_txt[] = { "Program name: " XSTR(TARGET) "\n", "Hello World!\n" };
-	const char *err_txt[] = { };
+	const char *out_txt[] = {
+        "Die wortliste ist:\n",
+        "Anette\n",
+        "Bert\n",
+        "Fanny\n",
+        "Gerd\n",
+        "Hans\n",
+        "Helen\n",
+        "Herbert\n",
+        "Kelvin\n",
+        "Lisa\n",
+        "Loa\n",
+        "Sarah\n",
+        "Seb\n"
+	};
 	// act
-	int exit_code = system(XSTR(TARGET) " 1>" OUTFILE " 2>" ERRFILE);
+	int exit_code = system(XSTR(TARGET) " 1>" OUTFILE " 2>" ERRFILE " <" INFILE_NOTEN);
 	// assert
 	CU_ASSERT_EQUAL(exit_code, 0);
 	assert_lines(OUTFILE, out_txt, sizeof(out_txt)/sizeof(*out_txt));
-	assert_lines(ERRFILE, err_txt, sizeof(err_txt)/sizeof(*err_txt));
 }
 
-static void test_main_with_one_arg(void)
+static void test_more_than_100_words(void)
 {
 	// arrange
-	const char *out_txt[] = { "Program name: " XSTR(TARGET) "\n", "Hello everybody\n" };
-	const char *err_txt[] = { };
+	
+	for (int i = 0; i == 100; i++) {
+	
+	}
 	// act
-	int exit_code = system(XSTR(TARGET) " everybody 1>" OUTFILE " 2>" ERRFILE);
+	int points1 = 24;
+	int points2 = 23;
+	int points_6 = 30;
+	int mark1 = 0;
+	int mark2 = 0;
+	// printf("%f", d);
 	// assert
-	CU_ASSERT_EQUAL(exit_code, 0);
-	assert_lines(OUTFILE, out_txt, sizeof(out_txt)/sizeof(*out_txt));
-	assert_lines(ERRFILE, err_txt, sizeof(err_txt)/sizeof(*err_txt));
+	mark1 = getMark(points1, points_6);
+	mark2 = getMark(points2, points_6);
+	CU_ASSERT_EQUAL(5, mark1);
+	CU_ASSERT_EQUAL(5, mark2);
 }
 
-static void test_main_with_two_args(void)
+static void test_empty_before_letter(void)
 {
-	// arrange
-	const char *out_txt[] = { "Program name: " XSTR(TARGET) "\n" };
-	const char *err_txt[] = { };
-	// act
-	int exit_code = system(XSTR(TARGET) " A B 1>" OUTFILE " 2>" ERRFILE);
-	// assert
-	CU_ASSERT_EQUAL(exit_code, (1 << 8));
-	assert_lines(OUTFILE, out_txt, sizeof(out_txt)/sizeof(*out_txt));
-	assert_lines(ERRFILE, err_txt, sizeof(err_txt)/sizeof(*err_txt));
+    int points[12] = { 15, 14, 14, 12, 11, 11, 10, 10, 10, 9, 9, 7};
+    int len = 12;
+    int points_6 = 14;
+    Statistics generatedStatistics = getStatistics(points, len, points_6);
+    CU_ASSERT_EQUAL(generatedStatistics.students, 12);
+    CU_ASSERT_EQUAL(generatedStatistics.points_6, 14);
+  
 }
+    
+static void test_end_with_ZZZ(void)
+{
+    char end[20] = "ZZZ";
+    Statistics generatedStatistics = getStatistics(points, len, points_6);
+    CU_ASSERT_EQUAL(generatedStatistics.students, 12);
+    CU_ASSERT_EQUAL(generatedStatistics.points_6, 14);
+  
+}
+
 
 /**
  * @brief Registers and runs the tests.
@@ -87,9 +130,11 @@ static void test_main_with_two_args(void)
 int main(void)
 {
 	// setup, run, teardown
-	TestMainBasic("Hello World", setup, teardown
-				 // , test_main_with_zero_args
-				 // , test_main_with_one_arg
-				//  , test_main_with_two_args
+	TestMainBasic("Woerterliste", setup, teardown
+				  , test_main_ausgabe
+				 // , test_more_than_100_words
+				 // , test_empty_before_letter
+				 // , test_end_with_ZZZ
+			    
 				  );
 }
