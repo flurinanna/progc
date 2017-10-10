@@ -48,9 +48,9 @@ typedef struct {
 
 
 /// UUT - Unit-Under-Test
-Statistics getStatistics(int pointlist[], int len, int points_6);
-int getMark(int points, int points_6);
-void printStatistics(Statistics);
+Statistics get_statistics(int pointlist[], int len, int points_6);
+int get_mark(int points, int points_6);
+void print_statistics(Statistics);
 
 
 #define EPSILON 0.001
@@ -101,7 +101,7 @@ static void test_main_ausgabe(void)
 	assert_lines(OUTFILE, out_txt, sizeof(out_txt)/sizeof(*out_txt));
 }
 
-static void test_getMark(void)
+static void test_get_mark(void)
 {
 	// arrange
 	// act
@@ -111,20 +111,20 @@ static void test_getMark(void)
 	int mark1 = 0;
 	int mark2 = 0;
 	// assert
-	mark1 = getMark(points1, points_6);
-	mark2 = getMark(points2, points_6);
+	mark1 = get_mark(points1, points_6);
+	mark2 = get_mark(points2, points_6);
 	CU_ASSERT_EQUAL(5, mark1);
 	CU_ASSERT_EQUAL(5, mark2);
 }
 
-static void test_getStatistics(void)
+static void test_get_statistics(void)
 {
     int points[12] = { 15, 14, 14, 12, 11, 11, 10, 10, 10, 9, 9, 7};
     int len = 12;
     int points_6 = 14;
-    Statistics generatedStatistics = getStatistics(points, len, points_6);
-    CU_ASSERT_EQUAL(generatedStatistics.students, 12);
-    CU_ASSERT_EQUAL(generatedStatistics.points_6, 14);
+    Statistics generated_statistics = get_statistics(points, len, points_6);
+    CU_ASSERT_EQUAL(generated_statistics.students, 12);
+    CU_ASSERT_EQUAL(generated_statistics.points_6, 14);
   
 }
     
@@ -138,7 +138,7 @@ int main(void)
 	// setup, run, teardown
 	TestMainBasic("Notenstatistik", setup, teardown
 				  , test_main_ausgabe
-				  , test_getMark
-				  , test_getStatistics			    
+				  , test_get_mark
+				  , test_get_statistics			    
 				  );
 }

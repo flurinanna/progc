@@ -30,9 +30,9 @@ typedef struct {
     int passed;
     } Statistics;
     
-Statistics getStatistics(int pointlist[], int len, int points_6);
-int getMark(int points, int points_6);
-void printStatistics(Statistics);
+Statistics get_statistics(int pointlist[], int len, int points_6);
+int get_mark(int points, int points_6);
+void print_statistics(Statistics);
 
 
 /**
@@ -67,8 +67,8 @@ int main(void)
 //calculate Statistic, print Statistic and decide, if rerun the 
 //calculation with new number needed for Mark 6.
 	do {
-	    statistics = getStatistics(pointlist, len, points_6);
-	    (void)printStatistics(statistics);
+	    statistics = get_statistics(pointlist, len, points_6);
+	    (void)print_statistics(statistics);
 	    (void)printf("Enter new minimal points for grade 6 (y/n?)");
 	    (void)scanf("%s", &rerun);
 	    if (rerun == 'y') {
@@ -87,7 +87,7 @@ int main(void)
 ** mark_1, passed) in struct Statistic. 
 **
 */
-Statistics getStatistics(int pointlist[], int len, int points_6) {
+Statistics get_statistics(int pointlist[], int len, int points_6) {
     Statistics statistics = {len, points_6};
     int grades[len];
     int mark6 = 0;
@@ -101,10 +101,10 @@ Statistics getStatistics(int pointlist[], int len, int points_6) {
     double average_mark;
 //safe Mark for each Students in a List   
     for(int i = 0; i < len; i++) {
-        grades[i] = getMark(pointlist[i], points_6);    
+        grades[i] = get_mark(pointlist[i], points_6);    
     }
 //count, how often each Mark occurs and safe value of best and 
-//worst occurring Mark and calculate the average Mark.
+//worst occurring Mark.
     for(int i = 0; i < len; i++) {
         best_mark = best_mark > grades[i] ? best_mark : grades[i];
         worst_mark = worst_mark < grades[i] ? worst_mark : grades[i];
@@ -122,6 +122,7 @@ Statistics getStatistics(int pointlist[], int len, int points_6) {
             case 6: mark6++;
         }               
     }
+//calculate the average Mark
     average_mark = (1*mark1 + 2*mark2 + 3*mark3 + 4*mark4 + 
                     5*mark5 + 6*mark6)/(double)len;
 //set all values in struct Statistics
@@ -142,7 +143,7 @@ Statistics getStatistics(int pointlist[], int len, int points_6) {
 ** function to calculate the Mark of a Student depending on th number of ** Points.
 **
 */
-int getMark(int points, int points_6) {
+int get_mark(int points, int points_6) {
     double mark = 1 + ((5.0*points)/points_6);
     if (mark > 6.0) {
         mark = 6.0;
@@ -160,7 +161,7 @@ int getMark(int points, int points_6) {
 ** function to print all values from struct Statistic 
 **
 */
-void printStatistics(Statistics statistics) {   
+void print_statistics(Statistics statistics) {   
     (void)printf("--------------------------------------------------------\n");
     (void)printf("Statistics (%d students, %d points needed for mark 6):\n", statistics.students, statistics.points_6);
     (void)printf("Mark 6: %d\n", statistics.mark_6);
