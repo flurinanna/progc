@@ -77,7 +77,8 @@ static void test_main_ausgabe(void)
 {
 	// arrange
 	const char *out_txt[] = {
-	      //  "Insert points needed for a 6: \n 19 \n ",
+	        "Insert points from each student, finish with '-1':\n",
+	        "Insert points needed for a 6:\n",
 		    "--------------------------------------------------------\n",
             "Statistics (20 students, 19 points needed for mark 6):\n",
             "Mark 6: 2\n",
@@ -87,12 +88,11 @@ static void test_main_ausgabe(void)
             "Mark 2: 0\n",
             "Mark 1: 0\n\n",
             "Best mark:    6\n",
-            "Worst mark:   3\n",
-            "Average mark: 4.35\n"
-            "Mark >= 4: 16 students 80 Percent\n",
-            "--------------------------------------------------------\n",
-            "Enter new minimal points for grade 6 (y/n?)\n"
-
+"Worst mark:   3\n",
+"Average mark: 4.35\n",
+"Mark >= 4: 16 students 80 Percent\n",
+"--------------------------------------------------------\n",
+"Enter new minimal points for grade 6 (y/n?)\n"
 	};
 	// act
 	int exit_code = system(XSTR(TARGET) " 1>" OUTFILE " 2>" ERRFILE " <" INFILE_NOTEN);

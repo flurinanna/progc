@@ -50,8 +50,8 @@ int main(void)
 	Statistics statistics;
 	char rerun = 'y';
 //read input Data: points from all Students
+	(void)printf("Insert points from each student, finish with '-1':\n");
 	while (!all_points_inserted) {
-	    (void)printf("Insert points from each student, finish with '-1': \n");
 	    (void)scanf("%d", &pointlist[len]);
 	    if (pointlist[len] >= 0) {
 	        len++;
@@ -62,7 +62,7 @@ int main(void)
 	    }
 	}
 //read points needed for Mark 6
-	(void)printf("Insert points needed for a 6: \n");
+	(void)printf("Insert points needed for a 6:\n");
 	(void)scanf("%d", &points_6);
 //calculate Statistic, print Statistic and decide, if rerun the 
 //calculation with new number needed for Mark 6.
