@@ -43,7 +43,7 @@ void printStatistics(Statistics);
  */
 int main(void)
 {
-	int points[100];
+	int pointlist[100];
 	int len = 0;
 	int all_points_inserted = 0;
 	int points_6 = 0;
@@ -51,11 +51,11 @@ int main(void)
 	char rerun = 'y';
 //read input Data: points from all Students
 	while (!all_points_inserted) {
-	    (void)printf("Geben Sie die Punktezahl des Studierenden ein, beenden Sie mit -1: \n");
-	    (void)scanf("%d", &points[len]);
-	    if (points[len] >= 0) {
+	    (void)printf("Insert points from each student, finish with '-1': \n");
+	    (void)scanf("%d", &pointlist[len]);
+	    if (pointlist[len] >= 0) {
 	        len++;
-	    } else if (points[len] == -1) {
+	    } else if (pointlist[len] == -1) {
 	        all_points_inserted = 1;
 	    } else {
 	        (void)printf("Points must be > 0!\n");
@@ -69,7 +69,7 @@ int main(void)
 	do {
 	    statistics = getStatistics(pointlist, len, points_6);
 	    (void)printStatistics(statistics);
-	    (void)printf("Enter new minimal points for grade 6(y/n?)");
+	    (void)printf("Enter new minimal points for grade 6 (y/n?)");
 	    (void)scanf("%s", &rerun);
 	    if (rerun == 'y') {
 	        (void)scanf("%d", &points_6);

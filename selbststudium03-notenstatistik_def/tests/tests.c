@@ -77,7 +77,7 @@ static void test_main_ausgabe(void)
 {
 	// arrange
 	const char *out_txt[] = {
-	        "Insert points needed for a 6: \n",
+	      //  "Insert points needed for a 6: \n 19 \n ",
 		    "--------------------------------------------------------\n",
             "Statistics (20 students, 19 points needed for mark 6):\n",
             "Mark 6: 2\n",
@@ -91,7 +91,7 @@ static void test_main_ausgabe(void)
             "Average mark: 4.35\n"
             "Mark >= 4: 16 students 80 Percent\n",
             "--------------------------------------------------------\n",
-            "Enter new minimal points for grade 6(y/n?)\n"
+            "Enter new minimal points for grade 6 (y/n?)\n"
 
 	};
 	// act
