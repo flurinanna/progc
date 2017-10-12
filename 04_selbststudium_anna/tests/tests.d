@@ -12,8 +12,8 @@ tests/tests.o: tests/tests.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
  /usr/include/x86_64-linux-gnu/bits/sys_errlist.h /usr/include/stdlib.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /home/blk/progc/selbststudium03-notenstatistik/../CUnit/include/CUnit/Basic.h \
- /home/blk/progc/selbststudium03-notenstatistik/../CUnit/include/CUnit/CUnit.h \
+ /home/anna/progc/progc/04_selbststudium_anna/../CUnit/include/CUnit/Basic.h \
+ /home/anna/progc/progc/04_selbststudium_anna/../CUnit/include/CUnit/CUnit.h \
  /usr/include/string.h /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -24,12 +24,12 @@ tests/tests.o: tests/tests.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/nan.h \
  /usr/include/x86_64-linux-gnu/bits/mathdef.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
- /home/blk/progc/selbststudium03-notenstatistik/../CUnit/include/CUnit/CUError.h \
+ /home/anna/progc/progc/04_selbststudium_anna/../CUnit/include/CUnit/CUError.h \
  /usr/include/errno.h /usr/include/x86_64-linux-gnu/bits/errno.h \
  /usr/include/linux/errno.h /usr/include/x86_64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- /home/blk/progc/selbststudium03-notenstatistik/../CUnit/include/CUnit/TestDB.h \
+ /home/anna/progc/progc/04_selbststudium_anna/../CUnit/include/CUnit/TestDB.h \
  /usr/include/setjmp.h /usr/include/x86_64-linux-gnu/bits/setjmp.h \
  /usr/include/x86_64-linux-gnu/bits/sigset.h \
- /home/blk/progc/selbststudium03-notenstatistik/../CUnit/include/CUnit/TestRun.h \
- /home/blk/progc/selbststudium03-notenstatistik/../include/test_utils.h
+ /home/anna/progc/progc/04_selbststudium_anna/../CUnit/include/CUnit/TestRun.h \
+ /home/anna/progc/progc/04_selbststudium_anna/../include/test_utils.h

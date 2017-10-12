@@ -1,0 +1,14 @@
+Gib Wörter ein:
+Die Wortliste ist:
+Anette
+Bert
+Fanny
+Gerd
+Hans
+Helen
+Herbert
+Kelvin
+Lisa
+Loa
+Sarah
+Seb

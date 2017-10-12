@@ -61,7 +61,8 @@ static void test_main_ausgabe(void)
 {
 	// arrange
 	const char *out_txt[] = {
-        "Die wortliste ist:\n",
+	    "Gib Wörter ein:\n",
+        "Die Wortliste ist:\n",
         "Anette\n",
         "Bert\n",
         "Fanny\n",
@@ -82,45 +83,31 @@ static void test_main_ausgabe(void)
 	assert_lines(OUTFILE, out_txt, sizeof(out_txt)/sizeof(*out_txt));
 }
 
-static void test_more_than_100_words(void)
+static void test_sort_empty_word(void)
 {
 	// arrange
-	
-	for (int i = 0; i == 100; i++) {
-	
-	}
-	// act
-	int points1 = 24;
-	int points2 = 23;
-	int points_6 = 30;
-	int mark1 = 0;
-	int mark2 = 0;
-	// printf("%f", d);
-	// assert
-	mark1 = getMark(points1, points_6);
-	mark2 = getMark(points2, points_6);
-	CU_ASSERT_EQUAL(5, mark1);
-	CU_ASSERT_EQUAL(5, mark2);
-}
-
-static void test_empty_before_letter(void)
-{
-    int points[12] = { 15, 14, 14, 12, 11, 11, 10, 10, 10, 9, 9, 7};
-    int len = 12;
-    int points_6 = 14;
-    Statistics generatedStatistics = getStatistics(points, len, points_6);
-    CU_ASSERT_EQUAL(generatedStatistics.students, 12);
-    CU_ASSERT_EQUAL(generatedStatistics.points_6, 14);
-  
+	char ada[20] = "ada";
+	char bob[20] = "bob";
+    char empty[20] = " ";
+    char *wordlist[100] = {bob, empty, ada};
+    // act
+    (void)sort(wordlist);
+    // assert
+	CU_ASSERT_EQUAL(wordlist[2], ada);
+	CU_ASSERT_EQUAL(wordlist[1], empty);
+	CU_ASSERT_EQUAL(wordlist[0], bob);
 }
     
-static void test_end_with_ZZZ(void)
+static void test_sort_two_equal_word(void)
 {
-    char end[20] = "ZZZ";
-    Statistics generatedStatistics = getStatistics(points, len, points_6);
-    CU_ASSERT_EQUAL(generatedStatistics.students, 12);
-    CU_ASSERT_EQUAL(generatedStatistics.points_6, 14);
-  
+    // arrange
+    char ada[20] = "ada";
+    char *wordlist[100] = {ada, ada};
+    // act
+    (void)sort(wordlist);
+    // assert
+    CU_ASSERT_EQUAL(wordlist[0], ada);
+    CU_ASSERT_EQUAL(wordlist[1], ada);  
 }
 
 
@@ -132,9 +119,7 @@ int main(void)
 	// setup, run, teardown
 	TestMainBasic("Woerterliste", setup, teardown
 				  , test_main_ausgabe
-				 // , test_more_than_100_words
-				 // , test_empty_before_letter
-				 // , test_end_with_ZZZ
-			    
+				  , test_sort_two_equal_word
+				  , test_sort_empty_word
 				  );
 }

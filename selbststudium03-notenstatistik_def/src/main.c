@@ -49,7 +49,7 @@ int main(void)
 	int points_6 = 0;
 	Statistics statistics;
 	char rerun = 'y';
-//read input Data: points from all Students
+    //read input Data: points from all Students
 	(void)printf("Insert points from each student, finish with '-1':\n");
 	while (!all_points_inserted) {
 	    (void)scanf("%d", &pointlist[len]);
@@ -61,11 +61,11 @@ int main(void)
 	        (void)printf("Points must be > 0!\n");
 	    }
 	}
-//read points needed for Mark 6
+    //read points needed for Mark 6
 	(void)printf("Insert points needed for a 6:\n");
 	(void)scanf("%d", &points_6);
-//calculate Statistic, print Statistic and decide, if rerun the 
-//calculation with new number needed for Mark 6.
+    //calculate Statistic, print Statistic and decide, if rerun the 
+    //calculation with new number needed for Mark 6.
 	do {
 	    statistics = get_statistics(pointlist, len, points_6);
 	    (void)print_statistics(statistics);
@@ -99,12 +99,12 @@ Statistics get_statistics(int pointlist[], int len, int points_6) {
     int best_mark =1;
     int worst_mark=6;
     double average_mark;
-//safe Mark for each Students in a List   
+    //safe Mark for each Students in a List   
     for(int i = 0; i < len; i++) {
         grades[i] = get_mark(pointlist[i], points_6);    
     }
-//count, how often each Mark occurs and safe value of best and 
-//worst occurring Mark.
+    //count, how often each Mark occurs and safe value of best and 
+    //worst occurring Mark.
     for(int i = 0; i < len; i++) {
         best_mark = best_mark > grades[i] ? best_mark : grades[i];
         worst_mark = worst_mark < grades[i] ? worst_mark : grades[i];
@@ -122,10 +122,10 @@ Statistics get_statistics(int pointlist[], int len, int points_6) {
             case 6: mark6++;
         }               
     }
-//calculate the average Mark
+    //calculate the average Mark
     average_mark = (1*mark1 + 2*mark2 + 3*mark3 + 4*mark4 + 
                     5*mark5 + 6*mark6)/(double)len;
-//set all values in struct Statistics
+    //set all values in struct Statistics
     statistics.best_mark = best_mark;
     statistics.worst_mark = worst_mark;
     statistics.average_mark = average_mark;
