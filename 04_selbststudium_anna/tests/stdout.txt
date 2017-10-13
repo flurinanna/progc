@@ -1,5 +1,6 @@
-Gib Wörter ein:
+Gib Woerter ein:
 Die Wortliste ist:
+
 Anette
 Bert
 Fanny

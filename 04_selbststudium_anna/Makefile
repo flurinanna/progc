@@ -1,5 +1,5 @@
 # what to produce
-TARGET        := bin/kontrollstrukturen
+TARGET        := bin/wordlist
 
 # implementation files
 SOURCES       := src/main.c

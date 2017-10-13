@@ -35,7 +35,8 @@
 
 /// UUT - Unit-Under-Test
 void sort(char **wordlist);
-
+void save_to_list(char *wkopie);
+void print_list(char **wordlist);
 
 #define EPSILON 0.001
 
@@ -61,8 +62,8 @@ static void test_main_ausgabe(void)
 {
 	// arrange
 	const char *out_txt[] = {
-	    "Gib Wörter ein:\n",
-        "Die Wortliste ist:\n",
+	    "Gib Woerter ein:\n",
+        "Die Wortliste ist:\n\n",
         "Anette\n",
         "Bert\n",
         "Fanny\n",
@@ -86,28 +87,43 @@ static void test_main_ausgabe(void)
 static void test_sort_empty_word(void)
 {
 	// arrange
-	char ada[20] = "ada";
-	char bob[20] = "bob";
-    char empty[20] = " ";
-    char *wordlist[100] = {bob, empty, ada};
+	char *ada = "ada";
+	char *bob = "bob";
+    char *empty = "";
+    char *wordlist[100];
+    wordlist[0] = bob;
+    wordlist[1] = empty;
+    wordlist[2] = ada;
     // act
     (void)sort(wordlist);
     // assert
-	CU_ASSERT_EQUAL(wordlist[2], ada);
-	CU_ASSERT_EQUAL(wordlist[1], empty);
-	CU_ASSERT_EQUAL(wordlist[0], bob);
+	CU_ASSERT_EQUAL(wordlist[1], ada);
+	CU_ASSERT_EQUAL(wordlist[0], empty);
+	CU_ASSERT_EQUAL(wordlist[2], bob);
 }
     
 static void test_sort_two_equal_word(void)
 {
     // arrange
     char ada[20] = "ada";
-    char *wordlist[100] = {ada, ada};
+    char *wordlist[100] = {ada, ada, "ZZZ"};
     // act
     (void)sort(wordlist);
     // assert
     CU_ASSERT_EQUAL(wordlist[0], ada);
-    CU_ASSERT_EQUAL(wordlist[1], ada);  
+}
+
+    
+static void test_save(void)
+{
+    // arrange
+    char *ada = "ada";
+    char *wordlist[100];
+    // act
+    (void)save_to_list(ada);
+    char test_ada = *wordlist[0];
+    // assert
+    CU_ASSERT_EQUAL(test_ada, "ada"); 
 }
 
 
@@ -121,5 +137,6 @@ int main(void)
 				  , test_main_ausgabe
 				  , test_sort_two_equal_word
 				  , test_sort_empty_word
+				  , test_save
 				  );
 }

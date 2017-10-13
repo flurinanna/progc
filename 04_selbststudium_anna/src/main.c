@@ -20,11 +20,10 @@
 
 char word[20];
 char *wordlist[100];
-char *wkopie;
-size_t listlaenge;
 int anzworte = 0;
 int wortzaehler = 0;
 
+void safe_to_list(char *wkopie);
 
 /*
 ** function to sort the words in wordlist
@@ -33,7 +32,12 @@ int wortzaehler = 0;
 void sort(char **wordlist) {
     for(int z = 0; z < anzworte; z++) {
         for(wortzaehler = 0; wortzaehler < anzworte - 1; wortzaehler++) {
-            //compare words
+        //compare words
+            //test if equal
+            if(strcmp(*(wordlist + wortzaehler), 
+                      *(wordlist + (wortzaehler+1))) == 0) {
+                free(wordlist[wortzaehler]);
+            }
             if(strcmp(*(wordlist + wortzaehler), 
                       *(wordlist + (wortzaehler+1))) > 0) {
                 //swap words
@@ -45,6 +49,22 @@ void sort(char **wordlist) {
     }
 }
 
+/*
+** function to print out the sorted words in wordlist
+*/
+void print_list(char **wordlist) {
+    printf("Die Wortliste ist:\n");
+    for(int k = 0; k < anzworte; k++) {
+        printf("%s\n", wordlist[k]);
+    }
+}
+
+/*
+** function to safe each word in wordlist
+*/
+void save_to_list(char *wkopie) {
+        wordlist[anzworte] = wkopie;
+}
 
 /**
  * @brief Main entry point. Reads several Words as input, finish input
@@ -54,7 +74,9 @@ void sort(char **wordlist) {
  */
 int main(void)
 {
-    printf("Gib Wörter ein:\n");
+    char *wkopie;
+    size_t listlaenge;
+    printf("Gib Woerter ein:\n");
     while(anzworte < 100 && !(strlen(word) == 3 && word[0]=='Z' 
                             && word[1]=='Z' && word[2]=='Z')) {
         //read word 
@@ -64,17 +86,14 @@ int main(void)
         wkopie = malloc(sizeof(char)*listlaenge);
         strcpy(wkopie, word);
         //safe word in wordlist
-        wordlist[anzworte] = wkopie;
+        save_to_list(wkopie);
         anzworte++;
     }
     anzworte--;
     //make alphabetic order
     sort(wordlist);
     //print out wortlist
-    printf("Die Wortliste ist:\n");
-    for(int k = 0; k < anzworte; k++) {
-        printf("%s\n", wordlist[k]);
-    }
+    print_list(wordlist);
 return EXIT_SUCCESS;
 
 }
