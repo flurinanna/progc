@@ -15,11 +15,9 @@ struct LE {
 
 ListElement le;
 
-void insertPerson(void);
-void removePerson(void);
-void showList(void);
-void clearList(void);
-
-
+void insert_person(void);
+void remove_person(void);
+void show_list(void);
+void clear_list(void);
 
 #endif

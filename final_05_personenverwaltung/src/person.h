@@ -9,9 +9,8 @@ typedef struct {
     unsigned age;
 } Person;
 
-int comparePerson(Person a, Person b);
-Person createPerson();
-void printPerson(const Person person);
-
+int compare_person(Person a, Person b);
+Person create_person();
+void print_person(const Person person);
 
 #endif

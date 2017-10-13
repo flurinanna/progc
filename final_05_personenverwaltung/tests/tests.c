@@ -39,10 +39,10 @@
 
 
 /// UUT - Unit-Under-Test
-void insertPerson(void);
-void removePerson(void);
-void showList(void);
-void clearList(void);
+void insert_person(void);
+void remove_person(void);
+void show_list(void);
+void clear_list(void);
 
 
 // setup & cleanup
@@ -142,10 +142,10 @@ static void test_comparePerson(void)
     Person c = { "Weber", "Dominik", 14 };
     Person d = { "Weber", "Dominik", 40 };
     
-    int result1 = comparePerson(a, b);
-    int result2 = comparePerson(b, a);
-    int result3 = comparePerson(b, c);
-    int result4 = comparePerson(c, d);
+    int result1 = compare_person(a, b);
+    int result2 = compare_person(b, a);
+    int result3 = compare_person(b, c);
+    int result4 = compare_person(c, d);
     
     CU_ASSERT(result1 < 0);
     CU_ASSERT(result2 > 0);

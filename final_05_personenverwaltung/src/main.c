@@ -28,13 +28,13 @@ int main(void)
         (void)printf("I(nsert), R(emove), S(how), C(lear), E(nd):\n");
         (void)scanf(" %c", &inputChar);
         switch(inputChar) {
-            case 'I': (void)insertPerson();
+            case 'I': (void)insert_person();
             break;
-            case 'R': (void)removePerson();
+            case 'R': (void)remove_person();
             break;
-            case 'S': (void)showList();
+            case 'S': (void)show_list();
             break;
-            case 'C': (void)clearList();
+            case 'C': (void)clear_list();
             break;
         }
     }

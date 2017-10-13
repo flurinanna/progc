@@ -6,7 +6,7 @@
 ** @param Person a, Person b
 ** @return int match
 */
-int comparePerson(const Person a, const Person b) {
+int compare_person(const Person a, const Person b) {
     int match = strcmp(a.name, b.name);
     if (match == 0) {
         match = strcmp(a.firstname, b.firstname);
@@ -20,7 +20,7 @@ int comparePerson(const Person a, const Person b) {
 /*
 ** function to create a new person according to user input.
 */
-Person createPerson() {
+Person create_person() {
     Person newPerson;
     (void)printf("Name: ");
     (void)scanf("%s", newPerson.name);
@@ -35,7 +35,7 @@ Person createPerson() {
 ** function to print out a given persons attributes.
 ** @param Person person
 */
-void printPerson(const Person person) {
+void print_person(const Person person) {
     printf("%s %s, %d\n", person.name, person.firstname, person.age);
 }
 

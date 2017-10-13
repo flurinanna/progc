@@ -4,13 +4,13 @@
 ** function to insert a new person to the list.
 **
 */
-void insertPerson(void) {  
+void insert_person(void) {  
     // create new person
-    Person newPerson = createPerson();
+    Person newPerson = create_person();
     // go to correct position in the list
     ListElement *pointer = &le;
     while (pointer->next != &le && 
-           comparePerson(newPerson, pointer->next->content) > 0 ) {
+           compare_person(newPerson, pointer->next->content) > 0 ) {
         pointer=pointer->next;
     } 
     // create new list element and point it to the new person
@@ -28,16 +28,16 @@ void insertPerson(void) {
 ** function to remove a person from the list.
 **
 */
-void removePerson(void) {
+void remove_person(void) {
     // create person object with the attributes of the person that 
     // shall be removed.  
-    Person to_remove = createPerson();
+    Person to_remove = create_person();
     // go through the list and look for a match.
     ListElement *pointer = &le;
     int success = 0;
      while (pointer->next != &le && success != 1) {
 
-        if (comparePerson(to_remove, pointer->next->content) == 0) {
+        if (compare_person(to_remove, pointer->next->content) == 0) {
             ListElement *tmp = pointer->next;
             pointer->next = pointer->next->next;
             free(tmp);
@@ -56,21 +56,20 @@ void removePerson(void) {
 /*
 ** function to print out all persons stored in the list.
 */
-void showList(void) {
+void show_list(void) {
     ListElement *pointer = &le;
     printf("Erfasste Personen: \n");
 	printf("--------------------------------------------------------\n");
     while (pointer->next != &le) {
         pointer = pointer->next;
-        printPerson(pointer->content);
-        
+        print_person(pointer->content);      
     }
 }
 
 /*
 ** function to delete all persons stored in the list.
 */
-void clearList(void) {
+void clear_list(void) {
      ListElement *pointer = &le;
      while (pointer->next != &le) {
         ListElement *tmp = pointer->next;
