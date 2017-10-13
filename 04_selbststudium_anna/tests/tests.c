@@ -106,11 +106,12 @@ static void test_sort_two_equal_word(void)
 {
     // arrange
     char ada[20] = "ada";
-    char *wordlist[100] = {ada, ada, "ZZZ"};
+    char *wordlist[100] = {ada, ada};
     // act
-    (void)sort(wordlist);
+    (void)sort(wordlist);    
     // assert
     CU_ASSERT_EQUAL(wordlist[0], ada);
+    CU_ASSERT_EQUAL(wordlist[1], "");
 }
 
     

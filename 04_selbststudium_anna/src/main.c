@@ -24,6 +24,8 @@ int anzworte = 0;
 int wortzaehler = 0;
 
 void safe_to_list(char *wkopie);
+void sort(char **wordlist);
+void print_list(char **wordlist);
 
 /*
 ** function to sort the words in wordlist
@@ -92,7 +94,7 @@ int main(void)
     anzworte--;
     //make alphabetic order
     sort(wordlist);
-    //print out wortlist
+    //print out wordlist
     print_list(wordlist);
 return EXIT_SUCCESS;
 
