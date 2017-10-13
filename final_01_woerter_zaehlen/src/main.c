@@ -12,7 +12,6 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 /**
  * @brief Main entry point.
@@ -20,12 +19,10 @@
 
 int main()
 {
-
     int text[100];  // int array to save the text entered (in ASCII-Code).
-    int woerter = 0, zeichen = 0; // counters for words and chars.
-    
+    int woerter = 0, zeichen = 0; // counters for words and chars.  
     text[zeichen] = getchar();  // first char is read.
-    if(text[zeichen] != '\n') { // if no text is entered the program terminates.
+    if(text[zeichen] != '\n') { // if no text is entered the program terminates
         woerter++;
     } else {
         return EXIT_FAILURE;
@@ -39,15 +36,12 @@ int main()
                 text[zeichen + 1] != '\t' && 
                 text[zeichen + 1] != '\n') {
    		        woerter++;
-   		    }
-      
+   		    }   
        } 
        zeichen++;
     }
-
     (void)printf("Text contains %d characters and %d words.\n",
                  zeichen, woerter); // counters are printed.
-
 	return EXIT_SUCCESS;
 }
 
