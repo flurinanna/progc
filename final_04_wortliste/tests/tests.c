@@ -18,7 +18,6 @@
 #include <string.h>
 
 
-
 #ifndef TARGET // must be given by the make file --> see test target
 #error missing TARGET define
 #endif
@@ -63,7 +62,7 @@ static void test_main_ausgabe(void)
 	// arrange
 	const char *out_txt[] = {
 	    "Gib Woerter ein:\n",
-        "Die Wortliste ist:\n\n",
+        "Die Wortliste ist:\n",
         "Anette\n",
         "Bert\n",
         "Fanny\n",
@@ -84,48 +83,6 @@ static void test_main_ausgabe(void)
 	assert_lines(OUTFILE, out_txt, sizeof(out_txt)/sizeof(*out_txt));
 }
 
-static void test_sort_empty_word(void)
-{
-	// arrange
-	char *ada = "ada";
-	char *bob = "bob";
-    char *empty = "";
-    char *wordlist[100];
-    wordlist[0] = bob;
-    wordlist[1] = empty;
-    wordlist[2] = ada;
-    // act
-    (void)sort(wordlist);
-    // assert
-	CU_ASSERT_EQUAL(wordlist[1], ada);
-	CU_ASSERT_EQUAL(wordlist[0], empty);
-	CU_ASSERT_EQUAL(wordlist[2], bob);
-}
-    
-static void test_sort_two_equal_word(void)
-{
-    // arrange
-    char ada[20] = "ada";
-    char *wordlist[100] = {ada, ada};
-    // act
-    (void)sort(wordlist);    
-    // assert
-    CU_ASSERT_EQUAL(wordlist[0], ada);
-    CU_ASSERT_EQUAL(wordlist[1], "");
-}
-
-    
-static void test_save(void)
-{
-    // arrange
-    char *ada = "ada";
-    char *wordlist[100];
-    // act
-    (void)save_to_list(ada);
-    char test_ada = *wordlist[0];
-    // assert
-    CU_ASSERT_EQUAL(test_ada, "ada"); 
-}
 
 
 /**
@@ -136,8 +93,5 @@ int main(void)
 	// setup, run, teardown
 	TestMainBasic("Woerterliste", setup, teardown
 				  , test_main_ausgabe
-				  , test_sort_two_equal_word
-				  , test_sort_empty_word
-				  , test_save
 				  );
 }

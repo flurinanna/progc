@@ -15,58 +15,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-
-
 char word[20];
 char *wordlist[100];
 int anzworte = 0;
-int wortzaehler = 0;
 
-void safe_to_list(char *wkopie);
+void save_to_list(char *wkopie);
 void sort(char **wordlist);
 void print_list(char **wordlist);
-
-/*
-** function to sort the words in wordlist
-**
-*/
-void sort(char **wordlist) {
-    for(int z = 0; z < anzworte; z++) {
-        for(wortzaehler = 0; wortzaehler < anzworte - 1; wortzaehler++) {
-        //compare words
-            //test if equal
-            if(strcmp(*(wordlist + wortzaehler), 
-                      *(wordlist + (wortzaehler+1))) == 0) {
-                free(wordlist[wortzaehler]);
-            }
-            if(strcmp(*(wordlist + wortzaehler), 
-                      *(wordlist + (wortzaehler+1))) > 0) {
-                //swap words
-                char *temp = wordlist[wortzaehler];  
-                wordlist[wortzaehler] = wordlist[wortzaehler + 1];
-                wordlist[wortzaehler + 1] = temp;
-            }
-        }
-    }
-}
-
-/*
-** function to print out the sorted words in wordlist
-*/
-void print_list(char **wordlist) {
-    printf("Die Wortliste ist:\n");
-    for(int k = 0; k < anzworte; k++) {
-        printf("%s\n", wordlist[k]);
-    }
-}
-
-/*
-** function to safe each word in wordlist
-*/
-void save_to_list(char *wkopie) {
-        wordlist[anzworte] = wkopie;
-}
 
 /**
  * @brief Main entry point. Reads several Words as input, finish input
@@ -96,13 +51,53 @@ int main(void)
     sort(wordlist);
     //print out wordlist
     print_list(wordlist);
-return EXIT_SUCCESS;
-
+    return EXIT_SUCCESS;
 }
 
+/*
+** function to sort the words in wordlist
+*/
+void sort(char **wordlist) {
+    for(int z = 0; z < anzworte; z++) {
+        for(int wortzaehler = 0; wortzaehler < anzworte - 1; wortzaehler++) {
+        //compare words
+            //test if equal
+            if(strcmp(*(wordlist + wortzaehler), 
+                      *(wordlist + (wortzaehler+1))) == 0) {
+                //if equal: delete one of equal words and move rest of the array -1,
+                //reduce arraysize by 1
+                free(wordlist[wortzaehler]);
+                for(int tmp = wortzaehler; tmp < anzworte -1; tmp++) {
+                    wordlist[tmp] = wordlist[tmp+1];
+                }
+                anzworte--;
+            }
+            if(strcmp(*(wordlist + wortzaehler), 
+                      *(wordlist + (wortzaehler+1))) > 0) {
+                //swap words
+                char *temp = wordlist[wortzaehler];  
+                wordlist[wortzaehler] = wordlist[wortzaehler + 1];
+                wordlist[wortzaehler + 1] = temp;
+            }
+        }
+    }
+}
 
+/*
+** function to print out the sorted words in wordlist
+*/
+void print_list(char **wordlist) {
+    printf("Die Wortliste ist:\n");
+    for(int k = 0; k < anzworte; k++) {
+        printf("%s\n", wordlist[k]);
+    }
+}
 
-
-
+/*
+** function to save each word in wordlist
+*/
+void save_to_list(char *wkopie) {
+        wordlist[anzworte] = wkopie;
+}
 
 
